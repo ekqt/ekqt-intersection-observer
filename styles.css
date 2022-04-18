@@ -1,0 +1,333 @@
+@font-face {
+  font-family: BLOKK;
+  src: url("./src/BLOKKNeue-Regular.woff2") format("woff2"),
+    url("./src/BLOKKNeue-Regular.woff") format("woff");
+}
+
+/* ----------------- */
+/*   Color Scheme    */
+/* ----------------- */
+
+* {
+  --brand-hue: 4;
+  --brand-saturation: 65%;
+  --brand-lightness: 33%;
+
+  --brand-light: hsl(
+    var(--brand-hue) var(--brand-saturation) var(--brand-lightness)
+  );
+  --text1-light: hsl(var(--brand-hue) var(--brand-saturation) 10%);
+  --text2-light: hsl(var(--brand-hue) 30% 30%);
+  --surface1-light: hsl(var(--brand-hue) 25% 90%);
+  --surface2-light: hsl(var(--brand-hue) 20% 99%);
+  --surface3-light: hsl(var(--brand-hue) 20% 92%);
+  --surface4-light: hsl(var(--brand-hue) 20% 85%);
+
+  --brand-dark: hsl(
+    var(--brand-hue) calc(var(--brand-saturation) / 2)
+      calc(var(--brand-lightness) / 0.75)
+  );
+  --text1-dark: hsl(var(--brand-hue) 15% 85%);
+  --text2-dark: hsl(var(--brand-hue) 5% 65%);
+  --surface1-dark: hsl(var(--brand-hue) 10% 10%);
+  --surface2-dark: hsl(var(--brand-hue) 10% 15%);
+  --surface3-dark: hsl(var(--brand-hue) 5% 20%);
+  --surface4-dark: hsl(var(--brand-hue) 5% 25%);
+}
+
+:root {
+  color-scheme: light;
+  --brand: var(--brand-light);
+  --text1: var(--text1-light);
+  --text2: var(--text2-light);
+  --surface1: var(--surface1-light);
+  --surface2: var(--surface2-light);
+  --surface3: var(--surface3-light);
+  --surface4: var(--surface4-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --brand: var(--brand-dark);
+    --text1: var(--text1-dark);
+    --text2: var(--text2-dark);
+    --surface1: var(--surface1-dark);
+    --surface2: var(--surface2-dark);
+    --surface3: var(--surface3-dark);
+    --surface4: var(--surface4-dark);
+  }
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --brand: var(--brand-light);
+  --text1: var(--text1-light);
+  --text2: var(--text2-light);
+  --surface1: var(--surface1-light);
+  --surface2: var(--surface2-light);
+  --surface3: var(--surface3-light);
+  --surface4: var(--surface4-light);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand: var(--brand-dark);
+  --text1: var(--text1-dark);
+  --text2: var(--text2-dark);
+  --surface1: var(--surface1-dark);
+  --surface2: var(--surface2-dark);
+  --surface3: var(--surface3-dark);
+  --surface4: var(--surface4-dark);
+}
+
+/** DISPLAYING THE SUN OR MOON */
+
+:root {
+  color-scheme: light;
+  --light-icon: inline;
+  --dark-icon: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --light-icon: none;
+    --dark-icon: light;
+  }
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --light-icon: inline;
+  --dark-icon: none;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --light-icon: none;
+  --dark-icon: inline;
+}
+
+.light-icon {
+  display: var(--light-icon);
+}
+
+.dark-icon {
+  display: var(--dark-icon);
+}
+
+.theme-toggle {
+  --size: 1.2rem;
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  inline-size: var(--size);
+  block-size: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: 1rem;
+
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px;
+}
+
+.theme-toggle > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round;
+  color: var(--text1);
+}
+
+:root {
+  font-family: BLOKK, system-ui, -apple-system, Roboto, sans-serif;
+  line-height: 1.5;
+  max-inline-size: 50ch;
+  text-align: justify;
+}
+
+/* ----------------- */
+/*  CSS Variables  */
+/* ----------------- */
+:root {
+  --gap: 2rem;
+}
+
+/* ----------------- */
+/*  Utility Classes  */
+/* ----------------- */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.flex-end {
+  display: flex;
+  justify-content: end;
+  margin-top: 1rem;
+  border-top: 2px solid var(--surface1);
+  padding-top: 1.2rem;
+  color: var(--text2);
+}
+
+.sr-only {
+  display: none;
+}
+
+/* ----------------- */
+/*  Primary Header  */
+/* ----------------- */
+.logo {
+  margin: 1rem;
+  font-size: 1.5em;
+  color: var(--brand);
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.primary-header {
+  align-items: center;
+  width: min(100% - 1rem, 90rem);
+  margin-inline: auto;
+}
+
+.primary-navigation,
+.footer-navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.primary-navigation a {
+  text-decoration: none;
+  color: var(--text2);
+}
+
+/* ----------------- */
+/*  Mobile Navigation  */
+/* ----------------- */
+
+@media (max-width: 768px) {
+  .primary-navigation {
+    --gap: 1em;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    flex-direction: column;
+    padding: min(20vh, 10rem) 2em;
+    background: hsl(0 0% 100% / 0.1);
+    transform: translateX(-100%);
+    transition: transform 250ms ease-in-out;
+    overflow-x: hidden;
+  }
+
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  .logo {
+    transform: translateX(2.4rem);
+  }
+
+  .mobile-nav-toggle {
+    z-index: 9999;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+
+    --size: 2.5rem;
+
+    background: none;
+    border: none;
+    padding: 0;
+
+    inline-size: var(--size);
+    block-size: var(--size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    outline-offset: 5px;
+  }
+
+  .mobile-nav-toggle svg {
+    inline-size: 100%;
+    block-size: 100%;
+    stroke-linecap: round;
+    color: var(--text2);
+  }
+
+  .nav-close-icon {
+    display: none;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    position: fixed;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] .nav-open-icon {
+    display: none;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] .nav-close-icon {
+    display: block;
+  }
+
+  @supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+      background: hsl(0 0% 100% / 0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  padding-bottom: 2rem;
+  background-color: var(--surface2);
+}
+
+.container {
+  width: min(100% - 3rem, 70rem);
+  margin-inline: auto;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text1);
+}
+
+h2 {
+  margin-block: 0;
+  color: var(--text3);
+}
+
+p {
+  margin-block: 0;
+}
+
+.banner {
+  border: 2px solid var(--surface3);
+  background-color: var(--surface3);
+  color: var(--text3);
+  margin-block: 1rem;
+  padding: 1rem;
+}
+
+h3 {
+  font-family: system-ui, -apple-system, Roboto, sans-serif;
+  margin-block: 0;
+}
